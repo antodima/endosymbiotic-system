@@ -1,9 +1,3 @@
-globals [
-  species-list
-  consumption-rate
-  production-rate
-]
-
 breed [ particles particle ]
 particles-own [
   species            ;; id of a species (index in species-list)
@@ -13,9 +7,15 @@ particles-own [
   not-affine
 ]
 
+globals [
+  species-list
+  consumption-rate
+  production-rate
+]
+
 to setup
   set consumption-rate 0.01
-  set production-rate  0.001
+  set production-rate  0.5
 
   clear-all
   reset-ticks
@@ -79,7 +79,8 @@ end
 to move-away-not-affine
   if not-affine != no-turtles [
     face not-affine
-    rt 180 ]
+    rt 180
+    fd 1 ]
 end
 
 to consume
@@ -104,6 +105,23 @@ end
 to setup-species ;; setup the species assigning a color
   ;set species-list n-values num-species [random 255 + 6]
   set species-list base-colors
+end
+
+to-report molecules
+  let molecules-length (length species-list)
+  let average-molecules (list)
+  set average-molecules n-values molecules-length [0]
+  let indexer ( range 0 length species-list )
+
+  foreach indexer [ idx ->
+    ask particles [
+      set average-molecules replace-item idx average-molecules ((item idx species-molecules) + (item idx average-molecules))
+    ]
+  ]
+  foreach indexer [ idx ->
+    set average-molecules replace-item idx average-molecules (item idx average-molecules / count particles)
+  ]
+  report average-molecules
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -134,25 +152,25 @@ ticks
 30.0
 
 SLIDER
-18
-130
-190
-163
+26
+53
+198
+86
 population
 population
 0
 100
-100.0
+29.0
 1
 1
 NIL
 HORIZONTAL
 
 BUTTON
-18
-90
-103
-125
+26
+13
+111
+48
 NIL
 setup
 NIL
@@ -166,10 +184,10 @@ NIL
 1
 
 BUTTON
-109
-91
-189
-125
+117
+14
+197
+48
 NIL
 go
 T
@@ -183,19 +201,37 @@ NIL
 1
 
 SLIDER
-18
-173
-191
-206
+26
+96
+199
+129
 vision
 vision
 1
 10
-5.0
+6.0
 1
 1
 NIL
 HORIZONTAL
+
+PLOT
+871
+11
+1350
+333
+Molecules
+Species
+Molecules
+0.0
+14.0
+0.0
+1.0
+true
+false
+"" ""
+PENS
+"default" 1.0 1 -16777216 true "" "clear-plot\nlet l (length molecules)\nset-plot-x-range 0 l\nset-histogram-num-bars l\n;histogram molecules\nplotxy 0 item 0 molecules\nplotxy 1 item 1 molecules\nplotxy 2 item 2 molecules\nplotxy 3 item 3 molecules\nplotxy 4 item 4 molecules\nplotxy 5 item 5 molecules\nplotxy 6 item 6 molecules\nplotxy 7 item 7 molecules\nplotxy 8 item 8 molecules\nplotxy 9 item 9 molecules\nplotxy 10 item 10 molecules\nplotxy 11 item 11 molecules\nplotxy 12 item 12 molecules\nplotxy 13 item 13 molecules\nplotxy 14 item 14 molecules"
 
 @#$#@#$#@
 ## WHAT IS IT?
