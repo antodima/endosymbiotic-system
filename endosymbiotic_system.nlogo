@@ -1,3 +1,33 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; An Endosymbiotic system approach as a Particle system ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; The Endosymbiotic Theory was first proposed by
+;; former Boston University Biologist Lynn Margulis
+;; in the 1960's and officially in her 1981 book "Symbiosis in Cell Evolution".
+
+;; Although now accepted as a well-supported theory,
+;; both she and the theory were ridiculed by mainstream
+;; biologists for a number of years.  Thanks to her persistance,
+;; and the large volumes of data that support this hypothesis gathered
+;; by her and many other scientists over the last 30 years, biology
+;; can now offer a plausible explanation for the evolution of eukaryotes.
+
+;; Dr. Margulis was doing reserarch on the origin of eukaryotic cells.
+;; She looked at all the data about prokaryotes, eukaryotes, and organelles.
+;; She proposed that the similarities between prokaryotes and organelles,
+;; together with their appearance in the fossil record, could best be explained by "endo-symbiosis".
+
+;; Endo = "within"
+;; Endocytosis = (cyto = cell) a process of 'cell eating' - cells are engulfed, but then usually digested as food....
+;; Endosymbiosis = cells are engulfed, but not digested...cells live together in a mutually benefitting relationship, or symbiosis
+
+;; Margulis' original hypothesis proposed that aerobic bacteria (that require oxygen)
+;; were ingested by anaerobic bacteria (poisoned by oxygen), and may each have had a
+;; survival advantage as long as they continued their partnership
+;; (e.g. Eukaryotic cells that engulfe Prokaryotic cells like Mitochondria and Chloroplasts).
+
+
 breed [ particles particle ]
 particles-own [
   species            ;; id of a species (index in species-list)
@@ -8,7 +38,7 @@ particles-own [
 ]
 
 globals [
-  species-list
+  species-list ;; 14, like NetLogo base colors
   consumption-rate
   production-rate
 ]
@@ -107,7 +137,7 @@ to setup-species ;; setup the species assigning a color
   set species-list base-colors
 end
 
-to-report molecules
+to-report molecules ;; report the molecules quantity for each species
   let molecules-length (length species-list)
   let average-molecules (list)
   set average-molecules n-values molecules-length [0]
@@ -160,7 +190,7 @@ population
 population
 0
 100
-29.0
+100.0
 1
 1
 NIL
@@ -209,7 +239,7 @@ vision
 vision
 1
 10
-6.0
+1.0
 1
 1
 NIL
