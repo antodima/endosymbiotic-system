@@ -16,7 +16,7 @@
 \setbeamercovered{transparent}
 % or whatever (possibly just delete it)
 
-\pgfdeclareimage[height=0.8cm]{institution-logo}{imgs/unipi-logo.png}
+\pgfdeclareimage[height=0.8cm]{institution-logo}{unipi-logo.png}
 \beamertemplatenavigationsymbolsempty
 \addtobeamertemplate{navigation symbols}{}{%
     \usebeamerfont{footline}%
@@ -24,7 +24,6 @@
     \hspace*{1em}%
     \insertframenumber/\inserttotalframenumber
 }
-\usepackage{graphicx}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
