@@ -114,7 +114,7 @@ end
 to consume
   let idx species
   ask affine [
-    if item idx species-molecules > 0
+    if item idx species-molecules >=
       [ set species-molecules replace-item idx species-molecules
         (item idx species-molecules - (consumption-rate * item idx species-molecules)) ]
   ]
