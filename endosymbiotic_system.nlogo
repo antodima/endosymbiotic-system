@@ -42,9 +42,6 @@ globals [
 ]
 
 to setup
-  set consumption-rate 0.01
-  set production-rate  0.5
-
   clear-all
   reset-ticks
 
